@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+ 
+	
+<!-- header::Start -->
+	<head>
+		<!-- Use Internet Explorer 9 Standards mode for Eclipse Browser Control - https://www.eclipse.org/swt/faq.php#browsernativeie and https://msdn.microsoft.com/en-us/library/jj676915%28v=vs.85%29.aspx -->
+  		<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+		
+		<!-- Next 2 http=equiv headers required to disable caching the Eclipse Browser Widget -->
+		<meta http-equiv="Pragma" content="no-cache">
+  		<meta http-equiv="Expires" content="-1">
+
+		<meta charset="UTF-8"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<meta name="copyright" content="Copyright IBM Corporation 2014" />
+		<meta name="abstract" content="IBM App Connect Enterprise V11 Tutorial">
+		<meta name="author" content="IBM">
+		<meta name="description" content="IBM App Connect Enterprise V11 Tutorial">
+		<meta name="keywords" content="keywords" > 
+		<meta name="robots" content="index,follow">
+		<meta name="source" content="IBM App Connect Enterprise V11 Tutorial" /> 
+		
+		<title>IBM App Connect Enterprise V11 Tutorial</title>
+
+    	<link rel="stylesheet" href="https://ot4i.github.io/iib-tutorials/css/main.css" />
+		<link rel="stylesheet" href="https://ot4i.github.io/iib-tutorials/css/app.css" />
+    	
+		<script src="https://ot4i.github.io/iib-tutorials/js/json2.js"></script>
+		<script src="https://ot4i.github.io/iib-tutorials/js/js2java.js"></script>
+		<script src="https://ot4i.github.io/iib-tutorials/js/js2java_steps.js"></script>
+		<script src="https://ot4i.github.io/iib-tutorials/js/vendor/modernizr.js"></script>
+	</head>
+<!-- header::End -->
+<!-- body::Start -->
+		<body>
+  	<!-- body content here -->
+	<div class="row">
+	  <div class="small-12 medium-12 large-12 columns">
+	    <p> </p>
+	  </div>
+	</div>
+	<div class="row">
+	  <div class="small-9 medium-9 large-9 columns">
+	    <h4 class="title">Using a FlowOrder node to control the order of execution paths in a flow <action><button class="small radius button" tabindex="0" id="stepsViewDetails" onclick="viewDetails()"> View Details</button> </action></h4>
+	  </div>
+	  <div class="small-3 medium-3 large-3 columns">
+		<a href="javascript:;" onclick="openHelpSystem('/com.ibm.etools.msgbroker.helphome.doc/help_home_msgbroker.htm')" class="small right helplink">IBM Knowledge Center</a> 
+	  </div>
+	</div> 
+	<hr>
+	<div class="row">
+		<div class="small-10 medium-10 large-10 columns">
+		<h5> Learn how to use the FlowOrder node to control the order of execution paths in a message flow driven by a JSON message over HTTP. </h5>
+		</div>
+		<div class="small-2 medium-2 large-2 columns">
+			<button class="small radius button right" tabindex="0" id="backToGallery" onclick="backToGallery()"> Back To Gallery
+			</button>
+		</div>
+	</div>
+	<div class="row">          
+		  <div class="small-12 medium-12 large-12 columns">
+			<ul class="tabs vertical"> 
+				<li class="tab-title tab-title-small active">
+				  <a href="javascript:;" onclick="show('panel21')">Create</a> 
+				</li>
+				<li class="tab-title tab-title-small">
+				  <a href="javascript:;" onclick="show('panel31')">Prepare</a> 
+				</li>
+				<li class="tab-title tab-title-small">
+				  <a href="javascript:;" onclick="show('panel41')">Run</a> 
+				</li>
+			</ul>
+			<!-- editing -->
+			<div class="tabs-content panel-thin-blue vertical"> 
+		    	<div class="content active" id="panel21">
+		    		
+		    		<div class="small-10 medium-10 large-10 columns divider">
+					
+				      	<div class="row content-details">
+					      	<h4>Import projects</h4>
+					        
+						    
+								<p> When you click Import, one project will be created in your workspace: An application named <span class="application">ExampleFlowOrder</span>. </p>
+								
+							
+								<p> <span class="application">ExampleFlowOrder</span> provides a single message flow named <span class="resource">FlowOrder</span> which provides two separate HTTPInput nodes as entry points to the flow. Both branches of the flow start by tracing the input with a Trace node and then use an HTTPReply to reply to the requestor. </p>
+								
+							
+								<p> The <span class="resource">/FlowOrder</span> branch of the flow then uses a FlowOrder node to execute two separate maps - the first one to lowercase the message data and the second one to uppercase the message data. Trace information is written to an output file. </p>
+								
+							
+								<p> The <span class="resource">/RandomOrder</span> branch of the flow does not control the order of execution of the two separate maps, so the user has no control over whether the message data is first converted to lowercase and then uppercase or vice versa. Trace information is written to an output file. </p>
+								
+							
+								<p> Once imported using the link on the right, the provided project is ready to be deployed and tested. To deploy, you can use a provided BAR file, as described on the Prepare tab. </p>
+								
+							
+						</div>
+						
+						<div class="row content-details">
+							<h4>Find out more</h4>
+							<ul>
+							
+								
+																
+								<li> <a href="javascript:;" onclick="openHelpSystem('/com.ibm.etools.mft.doc/bi12002_.htm')" title="Knowledge Center link to Developing integration solutions by using applications">Developing integration solutions by using applications</a> </li>
+							   	
+							
+							</ul>
+						</div>
+						
+					</div>
+					
+					<div class="small-2 medium-2 large-2 columns">
+					
+					
+					<h4 class="tkaction"><a href="javascript:;" onclick="importArtifacts(); openResource('MainFlow')"> Import <img class="icon-image" src="https://ot4i.github.io/iib-tutorials/images/icons/ibmdesign/back-right-previous_128-orange.png"></a></h4>
+										
+				    </div>
+					
+		    	</div>
+		    	<div class="content" id="panel31">
+					
+					<div class="small-12 medium-12 large-12 columns">
+					
+						<div class="row content-details">
+						  	<h4>Prepare a trace directory, create an integration node and deploy the message flow</h4>
+						    
+						    
+								<p> Prepare the scenario by executing the following steps: </p>
+								
+								
+									
+									<ol>
+									
+									
+										<li> The message flow's Trace node will attempt to write a trace file to the directory <code><span class="cmdname">C:\temp</span></code>. Create this directory if it does not already exist, or edit the Trace node in the message flow to use a different directory suitable for your runtime environment.
+										
+										</li>
+									
+										<li> Next, create an integration node by starting an App Connect Enterprise command console and executing the following commands:<br><code><span class="cmdname">mqsicreatebroker TESTNODE</span></code><br><code><span class="cmdname">mqsistart TESTNODE</span></code><br><code><span class="cmdname">mqsicreateexecutiongroup TESTNODE -e server</span></code>
+										
+										</li>
+									
+										<li> Back in the Toolkit, drag and drop deploy the provided BAR file named <span class="application">FlowOrder.bar</span> which you will find inside the <span class="application">ExampleFlowOrder</span> application.
+										
+										</li>
+									
+									
+									</ol>
+									
+								
+							
+						</div>
+						
+						<div class="row content-details">
+							<h4></h4>
+							<ul>
+							
+							</ul>
+						</div>
+							
+					</div>
+					
+		    	</div>
+		    	<div class="content" id="panel41">
+		    		
+					<div class="small-12 medium-12 large-12 columns">
+					
+				    	<div class="row content-details">
+					      	<h4></h4>
+					        
+						    
+								<p> <h4>Use the Flow Exerciser to test the tutorial scenario </h4></p>
+								
+								
+									
+									<ol>
+									
+									
+										<li> Open <span class="resource">FlowOrder.msgflow</span>.
+										
+										
+											
+											<ul>
+											
+												
+													<li> Click the Flow Exerciser icon <img src="http://ot4i.github.io/ot4i.tutorials//dist/images/icons/iib/startFlowExerciser.png" alt> to start testing the flow (when challenged you do not need to redeploy the flow again).</li>
+												
+													<li> Click the Send Message icon <img src="http://ot4i.github.io/ot4i.tutorials/dist/images/icons/iib/sendMessage.png" alt>.</li>
+												
+													<li> Two saved messages are provided so you can execute both branches of the flow and compare the results. Each message provides the same input JSON message which contains mixed case data. To try out the FlowOrder branch select the input message <span class="resource">FlowOrder</span>. Try out the RandomOrder branch, select the input message <span class="resource">RandomOrder</span>. Click Send and your message is sent to the HTTPInput node.</li>
+												
+													<li> Both <span class="resource">FlowOrder</span> and <span class="resource">RandomOrder</span> contain this data:<br><span class="resource">{"message":"This is a MiXeD case message"}</span></li>
+												
+													<li> After you close the dialog, the path taken through the messageflow is highlighted. Using a text editor, open the trace file <span class="resource">C:\temp\TraceFlowOrder.txt</span>. If you executed the FlowOrder branch, the trace file should read like this:<br><code>2019-08-02 17:08:38.802437 = The FlowOrder path has been invoked ...</code><br><code>2019-08-02 17:08:38.806927 = The message tree is set to: 'this is a mixed case message'</code><br><code>2019-08-02 17:08:38.808863 = The message tree is set to: 'THIS IS A MIXED CASE MESSAGE'</code><br>If you executed the RandomOrder branch, then the trace file entries may or may not be the other way around(!)</li>
+												
+											
+											</ul>
+											
+										
+										</li>
+									
+									
+									</ol>
+									
+								
+							
+								<p> This tutorial has shown the FlowOrder node control the order of execution paths in a flow. </p>
+								
+							
+						</div>
+						
+						<div class="row content-details"> 	
+							<h4>Find out more</h4>
+							<ul>
+							
+								
+																
+								<li> <a href="javascript:;" onclick="openHelpSystem('/com.ibm.etools.mft.doc/ac04790_.htm')" title="Knowledge Center link to FlowOrder node">FlowOrder node</a> </li>
+							   	
+							
+								
+																
+								<li> <a href="javascript:;" onclick="openHelpSystem('/com.ibm.etools.mft.doc/rt26110_.htm')" title="Knowledge Center link to Testing your message flow by using the Flow exerciser">Testing your message flow by using the Flow exerciser</a> </li>
+							   	
+							
+							</ul>
+						</div>
+							
+					</div>
+					
+				</div>	
+			</div> <!-- tab-content -->
+		</div> <!-- columns -->
+	  </div> <!-- row --></body>
+		<script src="https://ot4i.github.io/iib-tutorials/js/vendor/jquery.js"></script>
+		<script src="https://ot4i.github.io/iib-tutorials/js/vendor/foundation.min.js"></script>
+		<script src="https://ot4i.github.io/iib-tutorials/js/main.js"></script>
+	</body>
+<!-- body::End -->
+
+</html>
